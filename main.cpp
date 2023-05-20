@@ -8,9 +8,10 @@
 //#include "lab-2/Complex.h"
 //#include "lab-3/Triangle.h"
 //#include "lab-3/Int_Array.h"
-#include "lab-4/ShapeSystem.cpp"
-#include "lab-4/Circle.cpp"
-#include "lab-4/EquilateralTriangle.cpp"
+//#include "lab-4/ShapeSystem.cpp"
+//#include "lab-4/Circle.cpp"
+//#include "lab-4/EquilateralTriangle.cpp"
+#include "lab-5/MaxNStack.cpp"
 
 
 int main() {
@@ -184,53 +185,86 @@ int main() {
 
 // --------- LAB-4 ---------
 
-    ShapeSystem system;
-    int choice = 0;
-    while (choice != 9) {
-        std::cout
-                << "1. Add Circle\n2. Add Equilateral Triangle\n3. Total Area\n4. Total Perimeter\n5. Center of Mass"
-                   "\n6. Get total memory\n7. Sort shapes by mass\n8. Display Shapes\n9. Exit\n";
-        std::cin >> choice;
-        switch (choice) {
-            case 1:
-                double radius, mass;
-                std::cout << "Enter radius: ";
-                std::cin >> radius;
-                std::cout << "Enter mass: ";
-                std::cin >> mass;
-                system.addShape(new Circle(radius, mass));
-                break;
-            case 2:
-                double sideLength, mass2;
-                std::cout << "Enter length of each side: ";
-                std::cin >> sideLength;
-                std::cout << "Enter mass: ";
-                std::cin >> mass2;
-                system.addShape(new EquilateralTriangle(sideLength, mass2));
-                break;
-            case 3:
-                std::cout << "Total area: " << system.getTotalArea() << "\n";
-                break;
-            case 4:
-                std::cout << "Total perimeter: " << system.getTotalPerimeter() << "\n";
-                break;
-            case 5:
-                std::cout << "Center of mass: " << system.getCenterOfMass() << "\n";
-                break;
-            case 6:
-                system.getTotalMemory();
-                break;
-            case 7:
-                system.sortShapesByMass();
-                break;
-            case 8:
-                system.displayShapes();
-                break;
-            case 9:
-                break;
-            default:
-                std::cout << "Invalid choice\n ";
-        }
+//    ShapeSystem system;
+//    int choice = 0;
+//    while (choice != 9) {
+//        std::cout
+//                << "1. Add Circle\n2. Add Equilateral Triangle\n3. Total Area\n4. Total Perimeter\n5. Center of Mass"
+//                   "\n6. Get total memory\n7. Sort shapes by mass\n8. Display Shapes\n9. Exit\n";
+//        std::cin >> choice;
+//        switch (choice) {
+//            case 1:
+//                double radius, mass;
+//                std::cout << "Enter radius: ";
+//                std::cin >> radius;
+//                std::cout << "Enter mass: ";
+//                std::cin >> mass;
+//                system.addShape(new Circle(radius, mass));
+//                break;
+//            case 2:
+//                double sideLength, mass2;
+//                std::cout << "Enter length of each side: ";
+//                std::cin >> sideLength;
+//                std::cout << "Enter mass: ";
+//                std::cin >> mass2;
+//                system.addShape(new EquilateralTriangle(sideLength, mass2));
+//                break;
+//            case 3:
+//                std::cout << "Total area: " << system.getTotalArea() << "\n";
+//                break;
+//            case 4:
+//                std::cout << "Total perimeter: " << system.getTotalPerimeter() << "\n";
+//                break;
+//            case 5:
+//                std::cout << "Center of mass: " << system.getCenterOfMass() << "\n";
+//                break;
+//            case 6:
+//                system.getTotalMemory();
+//                break;
+//            case 7:
+//                system.sortShapesByMass();
+//                break;
+//            case 8:
+//                system.displayShapes();
+//                break;
+//            case 9:
+//                break;
+//            default:
+//                std::cout << "Invalid choice\n ";
+//        }
+//    }
+
+// --------- LAB-5 ---------
+
+    MaxNStack<3, int> s;
+    try {
+        s.pop();
+    } catch (const std::exception& e) {
+        std::cout << "Exception: " << e.what() << std::endl;
     }
+    try {
+        s.push(1);
+        std::cout << "Max: " << s.getMax() << std::endl;
+        s.push(2);
+        std::cout << "Max: " << s.getMax() << std::endl;
+        s.push(3);
+        std::cout << "Max: " << s.getMax() << std::endl;
+        s.push(4);
+    } catch (const std::exception& e) {
+        std::cout << "Exception: " << e.what() << std::endl;
+    }
+    try {
+        std::cout << "Top: " << s.top() << std::endl;
+        s.pop();
+        std::cout << "Max: " << s.getMax() << std::endl;
+        s.pop();
+        std::cout << "Max: " << s.getMax() << std::endl;
+        s.pop();
+        std::cout << "Max: " << s.getMax() << std::endl;
+        s.pop();
+    } catch (const std::exception& e) {
+        std::cout << "Exception: " << e.what() << std::endl;
+    }
+    return 0;
     return 0;
 }
