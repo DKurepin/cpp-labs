@@ -1,8 +1,9 @@
 #include <iostream>
+#include <vector>
+#include <array>
 
 //#include "lab-1/Swap.h"
 //#include "lab-1/Trunc.h"
-//#include "Complex.h"
 //#include "lab-1/Circle.h"
 //#include "lab-1/Complex.h"
 //#include "lab-2/Complex.h"
@@ -11,7 +12,30 @@
 //#include "lab-4/ShapeSystem.cpp"
 //#include "lab-4/Circle.cpp"
 //#include "lab-4/EquilateralTriangle.cpp"
-#include "lab-5/MaxNStack.cpp"
+//#include "lab-5/MaxNStack.cpp"
+#include "lab-6/Algorithms.h"
+
+
+template<typename T>
+bool sorted(T a, T b) {
+    if (a <= b)
+        return true;
+    return false;
+}
+
+template<typename T>
+bool greater(T a) {
+    if (a > 10)
+        return true;
+    return false;
+}
+
+template<typename T>
+bool func(T a, T b) {
+    if (a == b)
+        return true;
+    return false;
+}
 
 
 int main() {
@@ -235,36 +259,60 @@ int main() {
 //    }
 
 // --------- LAB-5 ---------
+//
+//    MaxNStack<3, int> s;
+//    try {
+//        s.pop();
+//    } catch (const std::exception& e) {
+//        std::cout << "Exception: " << e.what() << std::endl;
+//    }
+//    try {
+//        s.push(1);
+//        std::cout << "Max: " << s.getMax() << std::endl;
+//        s.push(2);
+//        std::cout << "Max: " << s.getMax() << std::endl;
+//        s.push(3);
+//        std::cout << "Max: " << s.getMax() << std::endl;
+//        s.push(4);
+//    } catch (const std::exception& e) {
+//        std::cout << "Exception: " << e.what() << std::endl;
+//    }
+//    try {
+//        std::cout << "Top: " << s.top() << std::endl;
+//        s.pop();
+//        std::cout << "Max: " << s.getMax() << std::endl;
+//        s.pop();
+//        std::cout << "Max: " << s.getMax() << std::endl;
+//        s.pop();
+//        std::cout << "Max: " << s.getMax() << std::endl;
+//        s.pop();
+//    } catch (const std::exception& e) {
+//        std::cout << "Exception: " << e.what() << std::endl;
+//    }
+//    return 0;
 
-    MaxNStack<3, int> s;
-    try {
-        s.pop();
-    } catch (const std::exception& e) {
-        std::cout << "Exception: " << e.what() << std::endl;
-    }
-    try {
-        s.push(1);
-        std::cout << "Max: " << s.getMax() << std::endl;
-        s.push(2);
-        std::cout << "Max: " << s.getMax() << std::endl;
-        s.push(3);
-        std::cout << "Max: " << s.getMax() << std::endl;
-        s.push(4);
-    } catch (const std::exception& e) {
-        std::cout << "Exception: " << e.what() << std::endl;
-    }
-    try {
-        std::cout << "Top: " << s.top() << std::endl;
-        s.pop();
-        std::cout << "Max: " << s.getMax() << std::endl;
-        s.pop();
-        std::cout << "Max: " << s.getMax() << std::endl;
-        s.pop();
-        std::cout << "Max: " << s.getMax() << std::endl;
-        s.pop();
-    } catch (const std::exception& e) {
-        std::cout << "Exception: " << e.what() << std::endl;
-    }
-    return 0;
+
+// --------- LAB-6 ---------
+
+    std::vector<int> vec;
+    vec.push_back(0);
+    vec.push_back(0);
+    vec.push_back(0);
+    vec.push_back(0);
+    vec.push_back(1);
+    std::cout << is_Sorted(vec.begin(), vec.end(), sorted<int>) << std::endl;
+    // Выведет 1, так как вектор отсортирован по возрастанию
+
+    std::array<int, 5> arr = {100, 200, 30, 40, 51};
+    std::cout << All_of(arr.begin(), arr.end(), greater<int>) << std::endl;
+    // Выведет 1, так как все элементы массива больше 10
+
+    std::vector<int> vec1;
+    vec1.push_back(1);
+    vec1.push_back(2);
+    vec1.push_back(1);
+    std::cout << is_Palindrome(vec1.begin(), vec1.end(), func<int>) << std::endl;
+    // Выведет 1, так как вектор является палиндромом
+
     return 0;
 }
