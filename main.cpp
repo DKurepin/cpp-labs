@@ -13,8 +13,8 @@
 //#include "lab-4/Circle.cpp"
 //#include "lab-4/EquilateralTriangle.cpp"
 //#include "lab-5/MaxNStack.cpp"
-#include "lab-6/Algorithms.h"
-
+//#include "lab-6/Algorithms.h"
+#include "lab-7/circular_buffer.h"
 
 template<typename T>
 bool sorted(T a, T b) {
@@ -294,25 +294,43 @@ int main() {
 
 // --------- LAB-6 ---------
 
-    std::vector<int> vec;
-    vec.push_back(0);
-    vec.push_back(0);
-    vec.push_back(0);
-    vec.push_back(0);
-    vec.push_back(1);
-    std::cout << is_Sorted(vec.begin(), vec.end(), sorted<int>) << std::endl;
-    // Выведет 1, так как вектор отсортирован по возрастанию
+//    std::vector<int> vec;
+//    vec.push_back(0);
+//    vec.push_back(0);
+//    vec.push_back(0);
+//    vec.push_back(0);
+//    vec.push_back(1);
+//    std::cout << is_Sorted(vec.begin(), vec.end(), sorted<int>) << std::endl;
+//    // Выведет 1, так как вектор отсортирован по возрастанию
+//
+//    std::array<int, 5> arr = {100, 200, 30, 40, 51};
+//    std::cout << All_of(arr.begin(), arr.end(), greater<int>) << std::endl;
+//    // Выведет 1, так как все элементы массива больше 10
+//
+//    std::vector<int> vec1;
+//    vec1.push_back(1);
+//    vec1.push_back(2);
+//    vec1.push_back(1);
+//    std::cout << is_Palindrome(vec1.begin(), vec1.end(), func<int>) << std::endl;
+//    // Выведет 1, так как вектор является палиндромом
+//
+//    return 0;
 
-    std::array<int, 5> arr = {100, 200, 30, 40, 51};
-    std::cout << All_of(arr.begin(), arr.end(), greater<int>) << std::endl;
-    // Выведет 1, так как все элементы массива больше 10
+// --------- LAB-7 ---------
 
-    std::vector<int> vec1;
-    vec1.push_back(1);
-    vec1.push_back(2);
-    vec1.push_back(1);
-    std::cout << is_Palindrome(vec1.begin(), vec1.end(), func<int>) << std::endl;
-    // Выведет 1, так как вектор является палиндромом
-
+    circular_buffer<int> test(7, 20);
+    for (int i = 0; i < 7; ++i)
+        test.append(i);
+    for (int i = 0; i < 7; ++i)
+        std::cout << test[i];
+    std::cout << std::endl;
+    test.append(7);
+    for (auto it = test.begin(); it != test.end(); ++it)
+        std::cout << *it;
+    std::cout << '\n';
+    std::cout << test.pop_from_start() << '\n' << test.pop() << '\n';
+    test.append_to_start(1);
+    for (int i = 0; i < 7; ++i)
+        std::cout << test[i];
     return 0;
 }
