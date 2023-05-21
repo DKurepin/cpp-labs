@@ -7,7 +7,9 @@
 //#include "lab-1/Complex.h"
 //#include "lab-2/Complex.h"
 #include "lab-3/Triangle.h"
-#include "lab-3/Int_Array.h"
+#include "lab-3/IntArray.h"
+#include "lab-3/IntArrayPrint.cpp"
+#include "lab-3/TrianglePrint.cpp"
 
 int main() {
 
@@ -95,7 +97,7 @@ int main() {
 
 
 // --------- LAB-3 ---------
-
+//
     std::cout << "Enter coordinates of the first triangle: ";
     double x1, y1, x2, y2, x3, y3;
     std::cin >> x1 >> y1 >> x2 >> y2 >> x3 >> y3;
@@ -112,7 +114,7 @@ int main() {
 
     Triangle t3 = t1 + vec;
     std::cout << "First triangle after adding the vector: ";
-    t3.print();
+    TrianglePrint::print(t3);
 
     if (t1 == t2) {
         std::cout << "The two triangles have the same area." << std::endl;
@@ -155,10 +157,10 @@ int main() {
 
     IntArray arr3 = arr1 + arr2;
     std::cout << "The result of concatenating the two arrays: ";
-    arr3.print();
+    IntArrayPrint::print(arr3);
 
     if (arr1 == arr2) {
-        std::cout << "The two arrays are equal." << std::endl;
+        std::cout << " The two arrays are equal." << std::endl;
     } else {
         std::cout << "The two arrays are not equal." << std::endl;
     }

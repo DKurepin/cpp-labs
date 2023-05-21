@@ -1,4 +1,4 @@
-#include "int_array.h"
+#include "IntArray.h"
 #include <cstring>
 
 IntArray::IntArray() : data(nullptr), size(0) {}
@@ -23,8 +23,14 @@ IntArray IntArray::operator+(const IntArray& other) const {
 }
 
 bool IntArray::operator==(const IntArray& other) const {
+    if (this == &other) {
+        return true;
+    }
     if (size != other.size) {
         return false;
+    }
+    if (data == other.data) {
+        return true;
     }
     for (int i = 0; i < size; i++) {
         if (data[i] != other.data[i]) {
@@ -58,9 +64,3 @@ int IntArray::get_size() const {
     return size;
 }
 
-void IntArray::print() const {
-    for (int i = 0; i < size; i++) {
-        std::cout << data[i] << " ";
-    }
-    std::cout << std::endl;
-}
