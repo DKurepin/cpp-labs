@@ -12,6 +12,7 @@
 //#include "lab-4/Circle.cpp"
 //#include "lab-4/EquilateralTriangle.cpp"
 #include "lab-5/MaxNStack.cpp"
+#include "lab-5/FindMaxAlgo.cpp"
 
 
 int main() {
@@ -265,6 +266,21 @@ int main() {
     } catch (const std::exception& e) {
         std::cout << "Exception: " << e.what() << std::endl;
     }
-    return 0;
+
+    // Тесты для алгоритма FindMaxAlgo.cpp
+    int arr1[] = {1, 2, 3, 4, 5};
+    int size1 = sizeof(arr1) / sizeof(int);
+    int max1 = findMax(arr1, size1);
+    std::cout << "Max element in arr1: " << max1 << std::endl;
+
+    double arr2[] = {-1.0, 2.5, 3.7, -4.2, 5.1};
+    int size2 = sizeof(arr2) / sizeof(double);
+    double max2 = findMax(arr2, size2);
+    std::cout << "Max element in arr2: " << max2 << std::endl;
+
+    int arr3[] = {5};
+    int size3 = sizeof(arr3) / sizeof(int);
+    int max3 = findMax(arr3, size3);
+    std::cout << "Max element in arr3: " << max3 << std::endl;
     return 0;
 }

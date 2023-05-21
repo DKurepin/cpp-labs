@@ -1,44 +1,51 @@
 #include <iostream>
-#include <stack>
 #include <stdexcept>
 
 template <int N, class T>
 class MaxNStack {
 private:
-    std::stack<T> s;
-    std::stack<T> maxStack;
+    T data[N];
+    int topIndex;
 public:
+    MaxNStack() : topIndex(-1) {}
+
     void push(const T& value) {
-        if (s.size() == N) {
+        if (topIndex >= N - 1) {
             throw std::overflow_error("Stack is full");
         }
-        s.push(value);
-        if (maxStack.empty() || value >= maxStack.top()) {
-            maxStack.push(value);
-        }
+        data[++topIndex] = value;
     }
+
     void pop() {
-        if (s.empty()) {
+        if (topIndex < 0) {
             throw std::underflow_error("Stack is empty");
         }
-        if (s.top() == maxStack.top()) {
-            maxStack.pop();
-        }
-        s.pop();
+        topIndex--;
     }
+
     T top() const {
-        if (s.empty()) {
+        if (topIndex < 0) {
             throw std::underflow_error("Stack is empty");
         }
-        return s.top();
+        return data[topIndex];
     }
+
     T getMax() const {
-        if (maxStack.empty()) {
+        if (topIndex < 0) {
             throw std::underflow_error("Stack is empty");
         }
-        return maxStack.top();
+        T max = data[0];
+        for (int i = 1; i <= topIndex; i++) {
+            if (data[i] > max) {
+                max = data[i];
+            }
+        }
+        return max;
     }
+
     bool empty() const {
-        return s.empty();
+        return topIndex < 0;
     }
 };
+
+
