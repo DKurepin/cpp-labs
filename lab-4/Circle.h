@@ -6,10 +6,12 @@ class Circle : public IShape {
 private:
     double radius;
     double mass;
+    inline static const std::string TYPE = "Circle";
+
 public:
     Circle(double r, double m) : radius(r), mass(m) {}
 
-    double getArea() const override {
+    double calculateArea() const override {
         return M_PI * radius * radius;
     }
 
@@ -25,7 +27,7 @@ public:
         return mass;
     }
 
-    std::string getType() const override {
-        return "Circle";
+    inline std::string getType() const override {
+        return TYPE;
     }
 };

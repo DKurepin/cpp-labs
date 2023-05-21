@@ -8,9 +8,9 @@
 //#include "lab-2/Complex.h"
 //#include "lab-3/Triangle.h"
 //#include "lab-3/Int_Array.h"
-#include "lab-4/ShapeSystem.cpp"
-#include "lab-4/Circle.cpp"
-#include "lab-4/EquilateralTriangle.cpp"
+#include "lab-4/ShapeCollection.cpp"
+#include "lab-4/Circle.h"
+#include "lab-4/EquilateralTriangle.h"
 
 
 int main() {
@@ -184,7 +184,8 @@ int main() {
 
 // --------- LAB-4 ---------
 
-    ShapeSystem system;
+    ShapeCollection collection;
+    double total_memory;
     int choice = 0;
     while (choice != 9) {
         std::cout
@@ -198,7 +199,7 @@ int main() {
                 std::cin >> radius;
                 std::cout << "Enter mass: ";
                 std::cin >> mass;
-                system.addShape(new Circle(radius, mass));
+                collection.addShape(new Circle(radius, mass));
                 break;
             case 2:
                 double sideLength, mass2;
@@ -206,25 +207,26 @@ int main() {
                 std::cin >> sideLength;
                 std::cout << "Enter mass: ";
                 std::cin >> mass2;
-                system.addShape(new EquilateralTriangle(sideLength, mass2));
+                collection.addShape(new EquilateralTriangle(sideLength, mass2));
                 break;
             case 3:
-                std::cout << "Total area: " << system.getTotalArea() << "\n";
+                std::cout << "Total area: " << collection.getTotalArea() << "\n";
                 break;
             case 4:
-                std::cout << "Total perimeter: " << system.getTotalPerimeter() << "\n";
+                std::cout << "Total perimeter: " << collection.getTotalPerimeter() << "\n";
                 break;
             case 5:
-                std::cout << "Center of mass: " << system.getCenterOfMass() << "\n";
+                std::cout << "Center of mass: " << collection.getCenterOfMass() << "\n";
                 break;
             case 6:
-                system.getTotalMemory();
+                total_memory = collection.getTotalMemory();
+                std::cout << "Total memory: " << total_memory << "\n";
                 break;
             case 7:
-                system.sortShapesByMass();
+                collection.sortShapesByMass();
                 break;
             case 8:
-                system.displayShapes();
+                collection.displayShapes();
                 break;
             case 9:
                 break;
