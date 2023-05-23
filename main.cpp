@@ -14,7 +14,10 @@
 //#include "lab-4/EquilateralTriangle.cpp"
 //#include "lab-5/MaxNStack.cpp"
 //#include "lab-6/Algorithms.h"
-#include "lab-7/circular_buffer.h"
+//#include "lab-7/circular_buffer.h"
+#include "lab-8/Cube.h"
+#include "lab-8/CubeAlgorithm.cpp"
+#include "lab-8/CubePrint.cpp"
 
 template<typename T>
 bool sorted(T a, T b) {
@@ -318,19 +321,162 @@ int main() {
 
 // --------- LAB-7 ---------
 
-    circular_buffer<int> test(7, 20);
-    for (int i = 0; i < 7; ++i)
-        test.append(i);
-    for (int i = 0; i < 7; ++i)
-        std::cout << test[i];
-    std::cout << std::endl;
-    test.append(7);
-    for (auto it = test.begin(); it != test.end(); ++it)
-        std::cout << *it;
-    std::cout << '\n';
-    std::cout << test.pop_from_start() << '\n' << test.pop() << '\n';
-    test.append_to_start(1);
-    for (int i = 0; i < 7; ++i)
-        std::cout << test[i];
-    return 0;
+//    circular_buffer<int> test(7, 20);
+//    for (int i = 0; i < 7; ++i)
+//        test.append(i);
+//    for (int i = 0; i < 7; ++i)
+//        std::cout << test[i];
+//    std::cout << std::endl;
+//    test.append(7);
+//    for (auto it = test.begin(); it != test.end(); ++it)
+//        std::cout << *it;
+//    std::cout << '\n';
+//    std::cout << test.pop_from_start() << '\n' << test.pop() << '\n';
+//    test.append_to_start(1);
+//    for (int i = 0; i < 7; ++i)
+//        std::cout << test[i];
+//    return 0;
+
+// --------- LAB-8 ---------
+
+    // enum для того, чтобы просто было видно какие команды существуют
+    enum Rotations {
+        F, F_, B, B_,
+        R, R_, L, L_,
+        U, U_, D, D_,
+        D2, U2, L2, R2,
+        B2, F2, lp, rp,
+        lp_, rp_, horizontalRotateL, horizontalRotate
+    };
+
+
+    int choice = 0;
+    Cube currentCube;
+    while (choice != 8) {
+        std::cout
+                << "1. Add new Rubik Cube\n2. Randomize Rubik Cube\n3. Read from file and Solve\n4. Solve Rubik Cube\n5. Print Rubik Cube\n6. Write solution to file\n7. Enter your commands\n8. Exit\n";
+
+        std::cin >> choice;
+        switch (choice) {
+            case 1: {
+                Cube *cube1 = new Cube();
+                currentCube = *cube1;
+                CubePrint::print(currentCube);
+            }
+                break;
+            case 2: {
+                Cube *cube2 = new Cube();
+                cube2->generateRandomCube();
+                currentCube = *cube2;
+                CubePrint::print(currentCube);
+            }
+                break;
+            case 3: {
+                std::ifstream in("/Users/DNK/Desktop/cpp-labs/input.txt");
+                Cube *cube = new Cube(in);
+                in.close();
+                currentCube = *cube;
+                CubePrint::print(currentCube);
+            }
+                break;
+            case 4: {
+                CubeAlgorithm::solve(currentCube);
+                CubePrint::print(currentCube);
+            }
+                break;
+            case 5: {
+                CubePrint::print(currentCube);
+            }
+                break;
+            case 6: {
+                currentCube.answers_output();
+            }
+                break;
+            case 7: {
+                std::string command;
+                std::cout << "Enter your commands: ";
+                std::cin >> command;
+                while (command != "quit") {
+                    if (command == "F") {
+                        currentCube.F();
+                    } else if (command == "B") {
+                        currentCube.B();
+                        CubePrint::print(currentCube);
+                    } else if (command == "B_") {
+                        currentCube.B_();
+                        CubePrint::print(currentCube);
+                    } else if (command == "F") {
+                        currentCube.F();
+                        CubePrint::print(currentCube);
+                    } else if (command == "F_") {
+                        currentCube.F_();
+                        CubePrint::print(currentCube);
+                    } else if (command == "U") {
+                        currentCube.U();
+                        CubePrint::print(currentCube);
+                    } else if (command == "U_") {
+                        currentCube.U_();
+                        CubePrint::print(currentCube);
+                    } else if (command == "D") {
+                        currentCube.D();
+                        CubePrint::print(currentCube);
+                    } else if (command == "D_") {
+                        currentCube.D_();
+                        CubePrint::print(currentCube);
+                    } else if (command == "L") {
+                        currentCube.L();
+                        CubePrint::print(currentCube);
+                    } else if (command == "R") {
+                        currentCube.R();
+                        CubePrint::print(currentCube);
+                    } else if (command == "R_") {
+                        currentCube.R_();
+                        CubePrint::print(currentCube);
+                    } else if (command == "L_") {
+                        currentCube.L_();
+                        CubePrint::print(currentCube);
+                    } else if (command == "B2") {
+                        currentCube.B2();
+                        CubePrint::print(currentCube);
+                    } else if (command == "D2") {
+                        currentCube.D2();
+                        CubePrint::print(currentCube);
+                    } else if (command == "R2") {
+                        currentCube.R2();
+                        CubePrint::print(currentCube);
+                    } else if (command == "U2") {
+                        currentCube.U2();
+                        CubePrint::print(currentCube);
+                    } else if (command == "lp") {
+                        currentCube.lp();
+                        CubePrint::print(currentCube);
+                    } else if (command == "lp_") {
+                        currentCube.lp_();
+                        CubePrint::print(currentCube);
+                    } else if (command == "rp_") {
+                        currentCube.rp_();
+                        CubePrint::print(currentCube);
+                    } else if (command == "rp") {
+                        currentCube.rp();
+                        CubePrint::print(currentCube);
+                    } else if (command == "Horizontal Rotate L") {
+                        currentCube.horizontalRotateL();
+                        CubePrint::print(currentCube);
+                    } else if (command == "Horizontal Rotate") {
+                        currentCube.horizontalRotate();
+                        CubePrint::print(currentCube);
+                    } else {
+                        std::cout << "Invalid command!" << std::endl;
+                        break;
+                    }
+                    std::cout << "Enter command: ";
+                    std::cin >> command;
+                }
+            }
+            case 8:
+                break;
+            default:
+                std::cout << "Invalid choice\n ";
+        }
+    }
 }
