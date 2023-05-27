@@ -34,15 +34,38 @@ bool Triangle::operator>(const Triangle &other) const {
 }
 
 double Triangle::area() const {
-    double a = std::sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
-    double b = std::sqrt((x3 - x2) * (x3 - x2) + (y3 - y2) * (y3 - y2));
-    double c = std::sqrt((x1 - x3) * (x1 - x3) + (y1 - y3) * (y1 - y3));
-    double p = (a + b + c) / 2;
-    return std::sqrt(p * (p - a) * (p - b) * (p - c));
+    static double s = -1;
+    if (s == -1) {
+        double a = std::sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+        double b = std::sqrt((x3 - x2) * (x3 - x2) + (y3 - y2) * (y3 - y2));
+        double c = std::sqrt((x1 - x3) * (x1 - x3) + (y1 - y3) * (y1 - y3));
+        double p = (a + b + c) / 2;
+        s = std::sqrt(p * (p - a) * (p - b) * (p - c));
+    }
+    return s;
 }
 
-void Triangle::print() const {
-    std::cout << "(" << x1 << ", " << y1 << "), "
-              << "(" << x2 << ", " << y2 << "), "
-              << "(" << x3 << ", " << y3 << ")" << std::endl;
+double Triangle::getX1() const {
+    return x1;
 }
+
+double Triangle::getY1() const {
+    return y1;
+}
+
+double Triangle::getX2() const {
+    return x2;
+}
+
+double Triangle::getY2() const {
+    return y2;
+}
+
+double Triangle::getX3() const {
+    return x3;
+}
+
+double Triangle::getY3() const {
+    return y3;
+}
+
