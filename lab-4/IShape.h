@@ -5,7 +5,7 @@
 
 class IShape {
 public:
-    virtual double getArea() const = 0;
+    virtual double calculateArea() const = 0;
 
     virtual double getPerimeter() const = 0;
 

@@ -2,11 +2,11 @@
 #include <vector>
 #include "IShape.h"
 
-class ShapeSystem {
+class ShapeCollection {
 private:
     std::vector<IShape *> shapes;
 public:
-    ~ShapeSystem() {
+    ~ShapeCollection() {
         for (auto shape: shapes) {
             delete shape;
         }
@@ -25,7 +25,7 @@ public:
     double getTotalArea() const {
         double totalArea = 0;
         for (auto shape: shapes) {
-            totalArea += shape->getArea();
+            totalArea += shape->calculateArea();
         }
         return totalArea;
     }
@@ -51,12 +51,12 @@ public:
         return centerOfMass;
     }
 
-    void getTotalMemory() {
+    double getTotalMemory() {
         double totalMemory = 0;
         for (auto shape: shapes) {
             totalMemory += sizeof(*shape);
         }
-        std::cout << "Total memory: " << totalMemory << "\n";
+        return totalMemory;
     }
 
     void sortShapesByMass() {
