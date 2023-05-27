@@ -24,8 +24,6 @@ public:
     const int& operator[](int index) const;
 
     int get_size() const;
-
-    void print() const;
 };
 
 #endif

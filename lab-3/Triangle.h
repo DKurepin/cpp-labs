@@ -20,9 +20,14 @@ public:
     bool operator<(const Triangle& other) const;
     bool operator>(const Triangle& other) const;
 
-    double area() const;
+    double getX1() const;
+    double getY1() const;
+    double getX2() const;
+    double getY2() const;
+    double getX3() const;
+    double getY3() const;
 
-    void print() const;
+    double area() const;
 };
 
 #endif
